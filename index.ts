@@ -35,16 +35,26 @@ const typeDefs = gql`
   type Query {
     players(rank: Int, position: String, school: String, name: String): [Player]
   }
+
+  type Mutation {
+    scrapeAndSeed(empty: Int): Int
+  }
 `;
 
 const resolvers = {
   Query: {
       players: (parent, args, context, info) => {
         return new Promise((resolve) => client.GetPlayers({rank: args["rank"], position: args["position"], school: args["school"], name: args["name"]} , function (err, response){
-              console.log(args);
               resolve(response.players);
           }));
       }
+  },
+  Mutation: {
+    scrapeAndSeed: (parent, args, context, info) => {
+      return new Promise((resolve) => client.ScrapeAndSeed({} , function (err, response){
+        resolve(response.success);
+      }));
+    },
   },
 }
 
