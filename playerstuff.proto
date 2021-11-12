@@ -1,0 +1,29 @@
+syntax="proto3";
+
+option go_package = "github.com/jordanx8/webscraper";
+
+package webscraper;
+
+service webscraperService {
+    rpc GetPlayers (PlayerRequest) returns (PlayerArray) {}
+}
+
+message Player {
+  int32 rank = 1;
+  string name = 2;
+  string school = 3;
+  string position = 4;
+  string nextgame = 5;
+}
+
+message PlayerRequest{
+  int32 rank = 1;
+  string name = 2;
+  string school = 3;
+  string position = 4;
+}
+
+message PlayerArray{
+	repeated Player players = 1;
+}
+  
