@@ -6,7 +6,7 @@ A GraphQl server created to make data created by cbnba_webscraper and makes it a
 
 Uses gRPC to connect with cbnba_webscraper and make rpc calls to obtain data.
 
-## How to Run
+## Available Scripts
 
 In the project directory, you can run:
 
