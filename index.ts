@@ -30,10 +30,11 @@ const typeDefs = gql`
     name: String
     school: String
     position: String
+    orderByDate: Boolean
 }
 
   type Query {
-    players(rank: Int, position: String, school: String, name: String): [Player]
+    players(rank: Int, position: String, school: String, name: String, orderByDate: Boolean): [Player]
   }
 
   type Mutation {
@@ -44,7 +45,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
       players: (parent, args, context, info) => {
-        return new Promise((resolve) => client.GetPlayers({rank: args["rank"], position: args["position"], school: args["school"], name: args["name"]} , function (err, response){
+        return new Promise((resolve) => client.GetPlayers({rank: args["rank"], position: args["position"], school: args["school"], name: args["name"], orderByDate: args["orderByDate"]} , function (err, response){
               resolve(response.players);
           }));
       }
